@@ -19,12 +19,14 @@ option = st.selectbox(
 days = ["今日","明日","明後日"]
 
 for i,day in enumerate(days):
-    
-    if(option=="天気"):
-        st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["weathers"][i])
-    if(option=="波"):
-        st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["waves"][i])
-    if(option=="風"):
-        st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["winds"][i])
+    try:
+        if(option=="天気"):
+            st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["weathers"][i])
+        if(option=="波"):
+            st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["waves"][i])
+        if(option=="風"):
+            st.write(f"{day}の{option}：" + text[0]["srf"]["timeSeries"][0]["areas"]["winds"][i])
+    except Exception as error:
+        print(error)
 m = folium.Map(location=places[Cities.index(place)], zoom_start=6)
 folium_static(m)
